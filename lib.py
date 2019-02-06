@@ -1,8 +1,5 @@
 
 
-# common functions
-
-
 def round_down(number):
     """
 
@@ -38,9 +35,6 @@ def calculate_perimeter(width, length):
     return result
 
 
-# distance_to_empty.py functions
-
-
 def calculate_distance_to_empty(consumption_per_100_km, fuel_level):
     """
 
@@ -54,9 +48,6 @@ def calculate_distance_to_empty(consumption_per_100_km, fuel_level):
     consumption_per_km = consumption_per_100_km/100
     distance_to_empty = fuel_level/consumption_per_km
     return distance_to_empty
-
-
-# rolls_required.py functions
 
 
 def calculate_number_of_strips(perimeter, roll_width):
