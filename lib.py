@@ -35,21 +35,6 @@ def calculate_perimeter(width, length):
     return result
 
 
-def calculate_distance_to_empty(consumption_per_100_km, fuel_level):
-    """
-
-    >>> calculate_distance_to_empty(10, 10)
-    100.0
-
-    >>> calculate_distance_to_empty(10, 5)
-    50.0
-    """
-
-    consumption_per_km = consumption_per_100_km/100
-    distance_to_empty = fuel_level/consumption_per_km
-    return distance_to_empty
-
-
 def calculate_number_of_strips(perimeter, roll_width):
     """
 
