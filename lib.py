@@ -24,71 +24,26 @@ def round_up(number):
     return number
 
 
-def calculate_perimeter(width, length):
+def calculate_rolls_required(room_length, room_width, room_height, roll_width, roll_length, pattern_shift):
     """
 
-    >>> calculate_perimeter(4, 6)
-    20
+    >>> calculate_rolls_required(4.5, 3.5, 2.7, 1.06, 10, 0.32)
+    6
     """
 
-    result = (width + length) * 2
-    return result
-
-
-def calculate_number_of_strips(perimeter, roll_width):
-    """
-
-    >>> calculate_number_of_strips(18, 1.06)
-    17
-    """
-
-    result = round_up(perimeter / roll_width)
-    return result
-
-
-def calculate_odd_strips_required(perimeter, roll_width):
-    """
-
-    >>> calculate_odd_strips_required(18, 1.06)
-    9
-    """
+    perimeter = (room_length + room_width) * 2
 
     number_of_strips = round_up(perimeter / roll_width)
-    result = round_up(number_of_strips / 2)
-    return result
 
-
-def calculate_even_strips_required(perimeter, roll_width):
-    """
-
-    >>> calculate_even_strips_required(18, 1.06)
-    8
-    """
-
-    number_of_strips = round_up(perimeter / roll_width)
-    result = round_down(number_of_strips / 2)
-    return result
-
-
-def calculate_rolls_for_odd_strips(number_of_strips, roll_length, pattern_shift, room_height):
-    """
-
-    >>> calculate_rolls_for_odd_strips(9, 10, 0.32, 2.7)
-    3
-    """
+    odd_strips_required = round_up(number_of_strips / 2)
+    even_strips_required = round_down(number_of_strips / 2)
 
     odd_strips_in_roll = round_down((roll_length - pattern_shift) / room_height)
-    result = round_up(number_of_strips / odd_strips_in_roll)
-    return result
-
-
-def calculate_rolls_for_even_strips(number_of_strips, roll_length, room_height):
-    """
-
-    >>> calculate_rolls_for_even_strips(8, 10, 2.7)
-    3
-    """
+    rolls_for_odd = round_up(odd_strips_required / odd_strips_in_roll)
 
     even_strips_in_roll = round_down(roll_length / room_height)
-    result = round_up(number_of_strips / even_strips_in_roll)
-    return result
+    rolls_for_even = round_up(even_strips_required / even_strips_in_roll)
+
+    rolls_required = rolls_for_odd + rolls_for_even
+
+    return rolls_required
