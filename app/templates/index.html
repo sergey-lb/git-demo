@@ -14,8 +14,10 @@
     <div class="row">
         <div class="col">
             <h1 class="mb-4">Рассчёт рулонов</h1>
-            {% if error %}
-                <div class="alert alert-danger" role="alert">{{error}}</div>
+            {% if errors %}
+                {% for error in errors %}
+                    <div class="alert alert-danger" role="alert">{{error}}</div>
+                {% endfor %}
             {% elif rolls_required %}
                 <div class="alert alert-primary" role="alert">
                     Необходимое кол-во рулонов для оклейки помещения: {{rolls_required}} шт.

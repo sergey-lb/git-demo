@@ -2,7 +2,8 @@ import os
 import waitress
 from flask import Flask, render_template, request
 
-from app.lib import collect_params_from_request_args, calculate_rolls_required, validate_params
+from app.lib import calculate_rolls_required, validate_params, format_params, \
+    validate_roll_length
 
 
 def start():
@@ -13,10 +14,13 @@ def start():
         if not request.args:
             return render_template('index.html', user_input={})
 
-        params = collect_params_from_request_args(request.args)
-        error = validate_params(params)
-        if error:
-            return render_template('index.html', user_input=request.args, error=error)
+        errors = validate_params(request.args)
+        if len(errors) == 0:
+            params = format_params(request.args)
+            errors = validate_roll_length(params['roll_length'], params['room_height'], params['pattern_shift'])
+
+        if len(errors):
+            return render_template('index.html', user_input=request.args, errors=errors)
 
         rolls_required = calculate_rolls_required(
             params['room_length'],
