@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Рассчёт рулонов</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="mb-4">Рассчёт рулонов</h1>
+            {% if error %}
+                <div class="alert alert-danger" role="alert">{{error}}</div>
+            {% elif rolls_required %}
+                <div class="alert alert-primary" role="alert">
+                    Необходимое кол-во рулонов для оклейки помещения: {{rolls_required}} шт.
+                </div>
+            {% endif %}
+            <form>
+                <div class="form-group">
+                    <label for="room_length">Длина помещения в метрах *</label>
+                    <input type="text" class="form-control" id="room_length" name="room_length" value="{{user_input.room_length}}">
+                </div>
+                <div class="form-group">
+                    <label for="room_width">Ширина помещения в метрах *</label>
+                    <input type="text" class="form-control" id="room_width" name="room_width" value="{{user_input.room_width}}">
+                </div>
+                <div class="form-group">
+                    <label for="room_height">Высота помещения в метрах *</label>
+                    <input type="text" class="form-control" id="room_height" name="room_height" value="{{user_input.room_height}}">
+                </div>
+                <div class="form-group">
+                    <label for="roll_width">Ширина рулона в см *</label>
+                    <input type="text" class="form-control" id="roll_width" name="roll_width" value="{{user_input.roll_width}}">
+                </div>
+                <div class="form-group">
+                    <label for="roll_length">Длина рулона в метрах *</label>
+                    <input type="text" class="form-control" id="roll_length" name="roll_length" value="{{user_input.roll_length}}">
+                </div>
+                <div class="form-group">
+                    <label for="pattern_shift">Смещение для стыковки в см</label>
+                    <input type="text" class="form-control" id="pattern_shift" name="pattern_shift" value="{{user_input.pattern_shift}}">
+                </div>
+                <button type="submit" class="btn btn-primary">Рассчитать</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
